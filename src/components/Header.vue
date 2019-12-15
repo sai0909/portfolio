@@ -1,29 +1,20 @@
 <template>
- 
-
-  <v-app-bar app
-    flat
-    hide-on-scroll
-  >
-   
-    <v-container
-      mx-auto
-      py-0
-    >
+  <v-app-bar app flat hide-on-scroll>
+    <v-container mx-auto py-0>
       <v-layout>
         <v-img
-        alt="Logo"
-        class="shrink mr-2"
-        contain
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-        transition="scale-transition"
-        width="40"
-      />
-        
+          alt="Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
         <v-spacer />
-        <v-btn color="accent" icon @click="setTheme">
+        <v-btn color="accent" icon @click="setTheme()">
           <v-icon v-if="!this.goDark">mdi-white-balance-sunny </v-icon>
-          <v-icon  v-else >mdi-moon-waxing-crescent</v-icon>
+          <v-icon v-else>mdi-moon-waxing-crescent</v-icon>
         </v-btn>
         <!-- <v-switch class="theme-select mt-5" @change="setTheme" v-model="goDark"></v-switch> -->
       </v-layout>
@@ -39,10 +30,15 @@ export default {
   }),
   methods: {
     setTheme() {
-      this.goDark = !this.goDark
+      this.goDark = !this.goDark;
+
       if (this.goDark == true) {
+        this.$emit("check-moon", this.goDark);
+
         return (this.$vuetify.theme.dark = true);
       } else {
+        this.$emit("check-moon", this.goDark);
+
         return (this.$vuetify.theme.dark = false);
       }
     }
@@ -50,5 +46,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
